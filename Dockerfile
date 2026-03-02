@@ -1,7 +1,5 @@
 FROM node:20.19-bullseye-slim AS base
 
-DOCKER_BUILDKIT=1 docker build -t cur .
-
 # Set environment variables early for better layer caching
 ENV LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
