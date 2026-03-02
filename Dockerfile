@@ -6,8 +6,8 @@ ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8
 
 # Install all system dependencies in a single layer with cache mounts
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=shared \
+    --mount=type=cache,target=/var/lib/apt,sharing=shared \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         openssh-client \
@@ -89,8 +89,8 @@ FROM base AS run
 WORKDIR /usr/src/app
 
 # Install Nginx and gettext in a single layer with cache mount
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=shared \
+    --mount=type=cache,target=/var/lib/apt,sharing=shared \
     apt-get update && \
     apt-get install -y --no-install-recommends nginx gettext
 
